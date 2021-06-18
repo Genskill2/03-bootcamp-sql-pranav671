@@ -1,25 +1,28 @@
 create table publisher 
 (
-	id SERIAL PRIMARY KEY,
+	id integer PRIMARY KEY,
 	name TEXT,
 	country TEXT
 );
 
 create table books
 (
-	id SERIAL PRIMARY KEY,
+	id integer PRIMARY KEY,
 	title TEXT,
-	publisher INT REFERENCES publisher(id)
+	publisher INT,
+	foreign key (publisher) references publisher(id)
 );
 
 create table subjects
 (
-	id SERIAL PRIMARY KEY,
+	id integer PRIMARY KEY,
 	name TEXT
 );
 
 create table books_subjects
 (
-	book INT REFERENCES books(id),
-	subject INT REFERENCES subjects(id)
+	book INT,
+	subject INT, 
+	foreign key (subject) REFERENCES subjects(id),
+	foreign key (book) REFERENCES books(id)
 );
